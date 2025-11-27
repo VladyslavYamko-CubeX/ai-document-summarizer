@@ -1,27 +1,26 @@
-# Project Title
+# Document Summarizer (Next.js 15)
 
-A brief description of what this project does and who it's for.
+A client-first tech demo that summarizes uploaded text or markdown files using your own OpenAI API key. Keys are never persisted: they live only in component state and are forwarded to the API route solely for the current request.
 
 ## Features
-
-- Clear and succinct features
-- Easy to use
-- Well-documented
+- Upload `.txt` or `.md` files (simple `.pdf` best-effort text extraction).
+- Preview the first portion of your document before summarizing.
+- Provide your own OpenAI API key directly in the UI (no env vars or server storage).
+- Choose summary length (Short/Medium/Long) and tone (Neutral/Friendly/Formal).
+- Server-side summarization via a Next.js API route using the `openai` SDK.
 
 ## Getting Started
 
-### Prerequisites
-
-- List any prerequisites here (e.g., Python 3.9, Node 18, etc.)
-- Describe installation steps if necessary
-
-### Installation
+> Package installation may require internet access to reach the npm registry.
 
 ```bash
-# Example commands
-git clone https://github.com/yourusername/repository.git
-cd repository
-# Add more installation details here
+npm install
+npm run dev
 ```
 
+Then open http://localhost:3000 and provide your OpenAI API key when prompted.
 
+## How it works
+- The API key is collected in the UI and stored only in React state.
+- Summarization is handled by `/api/summarize`, which instantiates `OpenAI` with the provided key and never reads any server-side secrets.
+- Inputs longer than 50k characters are truncated with a note in the returned summary.
