@@ -3,37 +3,142 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --background: 218 44% 97%;
+  --foreground: 232 32% 12%;
+  --muted: 222 35% 92%;
+  --muted-foreground: 229 16% 36%;
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --popover-foreground: 232 32% 12%;
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 72% 51%;
-  --destructive-foreground: 210 40% 98%;
-  --ring: 221.2 83.2% 53.3%;
-  --radius: 0.75rem;
+  --card-foreground: 232 32% 12%;
+  --surface: 0 0% 100%;
+  --surface-muted: 220 36% 96%;
+  --border: 220 30% 82%;
+  --border-strong: 222 26% 62%;
+  --input: 220 30% 82%;
+  --primary: 258 84% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 25% 94%;
+  --secondary-foreground: 222 35% 18%;
+  --accent: 195 85% 55%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 352 86% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 153 63% 34%;
+  --success-foreground: 144 73% 96%;
+  --ring: 258 84% 55%;
+  --shadow-soft: 221 27% 45%;
+  --field-background: 0 0% 100%;
+  --field-border: 220 25% 80%;
+  --field-foreground: 232 32% 12%;
+  --radius: 0.95rem;
+
+  --font-sans: "Inter", "Space Grotesk", "SF Pro Display", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --font-display: "Space Grotesk", "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --heading-xl: clamp(2.75rem, 4vw, 3.6rem);
+  --heading-lg: clamp(1.8rem, 3vw, 2.35rem);
+  --text-lg: 1.125rem;
+  --text-base: 1rem;
+  --text-sm: 0.9375rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 231 30% 11%;
+    --foreground: 213 32% 96%;
+    --muted: 226 22% 22%;
+    --muted-foreground: 220 16% 72%;
+    --popover: 232 20% 16%;
+    --popover-foreground: 213 32% 96%;
+    --card: 232 23% 20%;
+    --card-foreground: 213 32% 96%;
+    --surface: 232 24% 19%;
+    --surface-muted: 230 22% 25%;
+    --border: 231 18% 38%;
+    --border-strong: 232 18% 48%;
+    --input: 231 18% 38%;
+    --primary: 258 84% 70%;
+    --primary-foreground: 234 20% 12%;
+    --secondary: 232 20% 26%;
+    --secondary-foreground: 213 32% 96%;
+    --accent: 193 80% 60%;
+    --accent-foreground: 233 31% 10%;
+    --destructive: 350 74% 62%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 67% 48%;
+    --success-foreground: 149 61% 12%;
+    --ring: 258 84% 70%;
+    --shadow-soft: 210 30% 8%;
+    --field-background: 232 24% 24%;
+    --field-border: 232 20% 50%;
+    --field-foreground: 213 35% 96%;
+  }
+}
+
+::selection {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
 }
 
 body {
-  @apply bg-background text-foreground antialiased;
+  @apply text-foreground antialiased;
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+  background-color: hsl(var(--background));
+  background-image: radial-gradient(circle at 20% 20%, rgba(138, 180, 248, 0.45), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(255, 205, 178, 0.25), transparent 40%),
+    linear-gradient(180deg, hsla(0, 0%, 100%, 0.9), hsla(220, 43%, 96%, 0.9));
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  color: hsl(var(--foreground));
+}
+
+p {
+  font-size: var(--text-base);
+  color: hsl(var(--foreground) / 0.92);
 }
 
 a {
-  @apply text-primary underline-offset-4 hover:underline;
+  @apply underline-offset-4;
+  color: hsl(var(--primary));
+  transition: color 180ms ease;
+}
+
+a:hover {
+  color: hsl(var(--accent));
 }
 
 input[type='file']::-webkit-file-upload-button,
 input[type='file']::file-selector-button {
-  @apply px-4 py-2 mr-4 border rounded-md bg-secondary text-sm cursor-pointer;
+  @apply cursor-pointer rounded-lg border border-border bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-colors;
+}
+
+.text-glow-hero {
+  text-shadow:
+    0 10px 25px rgba(131, 146, 208, 0.45),
+    0 0 35px rgba(255, 255, 255, 0.55);
+}
+
+.text-glow-subtle {
+  text-shadow:
+    0 6px 18px rgba(120, 134, 182, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.4);
 }

@@ -11,7 +11,7 @@ const Alert = React.forwardRef<
     ref={ref}
     role="alert"
     className={cn(
-      "relative w-full rounded-lg border border-border bg-card px-4 py-3 text-sm text-card-foreground",
+      "relative w-full rounded-[calc(var(--radius)-2px)] border border-border/70 bg-surface px-5 py-4 text-sm text-card-foreground shadow-[0_16px_40px_rgba(15,23,42,0.08)]",
       className
     )}
     {...props}
@@ -25,7 +25,11 @@ const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h5 ref={ref} className={cn("mb-1 font-semibold leading-none", className)} {...props} />
+  <h5
+    ref={ref}
+    className={cn("mb-1 font-semibold leading-none tracking-tight text-foreground", className)}
+    {...props}
+  />
 ));
 AlertTitle.displayName = "AlertTitle";
 
@@ -35,7 +39,7 @@ const AlertDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-sm leading-relaxed text-muted-foreground", className)}
+    className={cn("text-sm leading-relaxed text-muted-foreground/90", className)}
     {...props}
   />
 ));
